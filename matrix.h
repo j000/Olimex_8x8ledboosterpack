@@ -1,9 +1,14 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#define DATA_LATCH_PIN		0x10  // P1.4
-#define SPI_CLK_OUT_PIN		0x20  // P1.5
-#define SPI_DATA_OUT_PIN	0x40  // P1.6
+#define DATA_LATCH_PIN BIT4 // P1.4
+#define SPI_CLK_OUT_PIN BIT5 // P1.5
+#define SPI_DATA_OUT_PIN BIT6 // P1.6
+
+class LEDmatrix {
+private:
+	extern unsigned char Matrix[8];
+};
 
 extern unsigned char Matrix[8];
 

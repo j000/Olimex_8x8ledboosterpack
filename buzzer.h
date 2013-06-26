@@ -1,8 +1,8 @@
 #ifndef BUZZER_H
 #define BUZZER_H
 
-#define BUZZER_OUT0_PIN		BIT1  // P1.1
-#define BUZZER_OUT1_PIN		BIT2  // P1.2
+#define BUZZER_OUT0_PIN BIT1 // P1.1
+#define BUZZER_OUT1_PIN BIT2 // P1.2
 
 void Delay (volatile unsigned long int i);
 

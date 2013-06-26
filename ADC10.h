@@ -1,8 +1,8 @@
 #ifndef ADC10_H
 #define ADC10_H
 
-#define MIC_VCC_PIN     0x01    // (1 << 0)	// P1.0
-#define MIC_ANIN_PIN    0x02    // (1 << 1)	// P1.3
+#define MIC_VCC_PIN BIT0 // P1.0
+#define MIC_ANIN_PIN BIT3 // P1.3
 
 class ADC10 {
 	int average;
