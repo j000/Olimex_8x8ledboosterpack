@@ -38,11 +38,12 @@ void ADC10_Init(void) {
  This function calculate an average value of <count> converts of the ADC10.
  After that value is considered as a "zero" value for the further conversions.
  */
-int ADC10_Calibrate(int count) {
+int ADC10_Calibrate(/*int count*/) {
+#define count 16
 	int i;
 	long int avg = 0;
 	Delay(10000);
-	for (i = count; i > 0; --i) {
+	for (i = count; i != 0; --i) {
 		Delay(100);
 		avg += ADC10MEM;   // accumulate the total value of the measurements
 	}
@@ -108,11 +109,12 @@ void ADC10::Init(void) {
  This function calculate an average value of <count> converts of the ADC10.
  After that value is considered as a "zero" value for the further conversions.
  */
-void ADC10::Calibrate(int count) {
-	int i;
+void ADC10::Calibrate(/*int count*/) {
+#define count 16
+	char i;
 	long unsigned int avg = 0;
 	Delay(10000);
-	for (i = count; i > 0; --i) {
+	for (i = count; i != 0; --i) {
 		Delay(100);
 		avg += ADC10MEM;   // accumulate the total value of the measurements
 	}

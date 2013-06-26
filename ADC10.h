@@ -8,13 +8,13 @@ class ADC10 {
 	int average;
 public:
 	void Init(void);
-	void Calibrate(int count);
+	void Calibrate(/*int count*/);
 	int GetResult(void);
 };
 
 void ADC10_Init(void);
 
-int ADC10_Calibrate(int count);
+int ADC10_Calibrate(/*int count*/);
 
 int ADC10_GetResult(int AVG);
 

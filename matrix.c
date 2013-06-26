@@ -66,9 +66,13 @@ void LED_Matrix_Init(void) {
  */
 void Set_Matrix(const unsigned char New[], int Count = 7) {
 	unsigned char i;
-	for (i = 0; i < Count; i++)
+	//for (i = 0; i < Count; i++)
+	i = Count+1;
+	do {
+		--i;
 		Matrix[i] = New[i];
-	for (i = Count; i < 8; i++)
+	} while (i != 0);
+	for (i = Count; i < 8; ++i)
 		Matrix[i] = 0x00;
 	return;
 }
@@ -90,50 +94,84 @@ void Set_Matrix_Rotate(const unsigned char New[], int Degree) {
 	unsigned char Temp[8], x;
 	switch (Degree) {
 	case 90:
-		for (i = 0; i < 8; i++)
+		//for (i = 7; i >= 0; --i)
+		i = 8;
+		do {
+			--i;
 			Temp[i] = 0;
+		} while (i != 0);
 
-		for (i = 0; i < 8; i++) {
+		//for (i = 7; i >= 0; --i) {
+		i = 8;
+		do {
+			--i;
 			x = New[i];
-			for (j = 0; j < 8; j++) {
-				Temp[7 - j] = Temp[7 - j] | ((x & 1) << i);
+			//for (j = 7; j >= 0; --j) {
+			j = 8;
+			do {
+				--j;
+				Temp[(unsigned char)(7 - j)] |= ((x & 1) << i);
 				x = x >> 1;
-			}
-		}
+			} while (j != 0);
+		} while (i != 0);
 		break;
 
 	case 180:
-		for (i = 0; i < 8; i++) {
+		//for (i = 7; i >= 0; --i) {
+		i = 8;
+		do {
+			--i;
 			x = New[i];
 			Temp[i] = 0;
-			for (j = 0; j < 8; j++) {
+			//for (j = 7; j >= 0; --j) {
+			j = 8;
+			do {
+				--j;
 				Temp[i] = Temp[i] << 1 | (x & 1);
 				x = x >> 1;
-			}
-		}
+			} while (j != 0);
+		} while (i != 0);
 		break;
 
 	case 270:
-		for (i = 0; i < 8; ++i)
+		//for (i = 7; i >= 0; --i) {
+		i = 8;
+		do {
+			--i;
 			Temp[i] = 0;
+		} while (i != 0);
 
-		for (i = 0; i < 8; ++i) {
+		//for (i = 7; i >= 0; --i) {
+		i = 8;
+		do {
+			--i;
 			x = New[i];
-			for (j = 0; j < 8; ++j) {
+			//for (j = 7; j >= 0; --j) {
+			j = 8;
+			do {
+				--j;
 				Temp[j] |= ((x & 1) << (7 - i));
 				x = x >> 1;
-			}
-		}
+			} while (j != 0);
+		} while (i != 0);
 		break;
 
 	default:
-		for (i = 0; i < 8; ++i)
+		//for (i = 7; i >= 0; --i) {
+		i = 8;
+		do {
+			--i;
 			Temp[i] = New[i];
+		} while (i != 0);
 		break;
 	}
 
-	for (i = 0; i < 8; ++i)
+	//for (i = 7; i >= 0; --i) {
+	i = 8;
+	do {
+		--i;
 		Matrix[i] = Temp[i];
+	} while (i != 0);
 	return;
 }
 

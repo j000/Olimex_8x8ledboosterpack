@@ -14,8 +14,7 @@ const unsigned char Range[3] = { 20, 40, 90 };   // noise levels thresholds
 
 // Simple delay loop with volatile variable to avoid optimizations
 void Delay(volatile unsigned long int i) {
-	while (i--)
-		;
+	while (i--);
 	return;
 }
 
@@ -27,6 +26,12 @@ int main(void) {
 
 // ++++++++++++++++++ Initializations ++++++++++++++++++
 	WDTCTL = WDTPW + WDTHOLD;     // Stop watchdog timer
+
+	// do not left undefined
+	P2DIR = 0xFF;
+	P2OUT = 0x00;
+
+
 	LED_Matrix_Init();
 	TimerA_Init(PERIOD, PRESCALER);
 	Buzzer_Init();
@@ -36,7 +41,7 @@ int main(void) {
 	//ADC10_Init ();
 	//AVG = ADC10_Calibrate (16);
 	ADC.Init();
-	ADC.Calibrate(16);
+	ADC.Calibrate(/*16*/);
 
 	Set_Matrix_Rotate(None, DEGREE);
 
