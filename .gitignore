@@ -1,0 +1,10 @@
+#CCS created files. We want just source.
+Debug/
+Release/
+.launches/
+.settings/
+targetConfigs/
+lnk_msp430g*.cmd
+.ccsproject
+.cproject
+.project
