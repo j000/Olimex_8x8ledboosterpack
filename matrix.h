@@ -5,11 +5,6 @@
 #define SPI_CLK_OUT_PIN BIT5 // P1.5
 #define SPI_DATA_OUT_PIN BIT6 // P1.6
 
-class LEDmatrix {
-private:
-	extern unsigned char Matrix[8];
-};
-
 extern unsigned char Matrix[8];
 
 void TimerA_Init(unsigned int Counter, unsigned int prescaler);
