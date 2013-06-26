@@ -1,9 +1,6 @@
 #include "main.h"
 #include "matrix.h"
 
-// Global variable Matrix - the actual container of data which will be displayed on the LED matrix
-unsigned char Matrix[8];
-
 /*
  Name:
  USI_Init
@@ -14,7 +11,7 @@ unsigned char Matrix[8];
  Description:
  Configures the serial interface with the proper settings.
  */
-void USI_Init(void) {
+void LEDmatrix::USI_Init(void) {
 	// configure SPI
 	USICTL0 |= USISWRST;                      // USI in reset
 	USICTL0 = USICTL0 | USILSB;               // Least Significant Bit first
@@ -37,7 +34,7 @@ void USI_Init(void) {
  Initialize the matrix pins and latch.
  Initialize watchdog timer as timer interval.
  */
-void LED_Matrix_Init(void) {
+void LEDmatrix::Init(void) {
 	// configure SPI pins and latch
 	P1DIR |= DATA_LATCH_PIN | SPI_DATA_OUT_PIN | SPI_CLK_OUT_PIN;
 
@@ -64,7 +61,7 @@ void LED_Matrix_Init(void) {
  Moving the new data to the Matrix array.
  You can "cut" the picture and display only first <Count> columns.
  */
-void Set_Matrix(const unsigned char New[], int Count = 7) {
+void LEDmatrix::Set_Matrix(const unsigned char New[], int Count = 7) {
 	unsigned char i;
 	//for (i = 0; i < Count; i++)
 	i = Count+1;
@@ -89,7 +86,7 @@ void Set_Matrix(const unsigned char New[], int Count = 7) {
  Similar to Set_Matrix but with an option to rotate the picture giving you opportunity
  to draw picture as array with a different way.
  */
-void Set_Matrix_Rotate(const unsigned char New[], int Degree) {
+void LEDmatrix::Set_Matrix_Rotate(const unsigned char New[], int Degree) {
 	unsigned char i, j;
 	unsigned char Temp[8], x;
 	switch (Degree) {
@@ -187,8 +184,8 @@ void Set_Matrix_Rotate(const unsigned char New[], int Degree) {
  The column is selected by the <index> and Matrix[index] contains
  the respective bits to be ON.
  */
-#pragma vector=WDT_VECTOR
-__interrupt void Write_Matrix(void) {
+//#pragma vector=WDT_VECTOR
+/*__interrupt*/ void LEDmatrix::Write_Matrix(void) {
 	static unsigned char index = 0;
 
 	P1OUT |= DATA_LATCH_PIN;
